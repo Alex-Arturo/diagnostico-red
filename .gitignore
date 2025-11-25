@@ -1,0 +1,6 @@
+*.txt
+diagnostico.log
+ping_resultado
+ping_script.py
+__pycache__
+
