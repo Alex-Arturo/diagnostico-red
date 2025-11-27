@@ -42,6 +42,14 @@ def ping_subprocess(directorio : str = "resultados_red", host :str = "google.com
         with open("error.txt", "w") as f:
             f.write(e.stderr)
 
+def ejecutar_traceroute(host):
+    try:
+        # Windows usa 'tracert', Linux/Mac usan 'traceroute'
+        comando = ["tracert", host] if subprocess.run(["uname"], capture_output=True).returncode != 0 else ["traceroute", host]
+        resultado = subprocess.run(comando, capture_output=True, text=True)
+        return resultado.stdout
+    except Exception as e:
+        return f"Error ejecutando traceroute: {e}"
 
 
 

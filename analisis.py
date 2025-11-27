@@ -1,6 +1,6 @@
 from datetime import datetime as dt
 from typing import List
-from ping_subprocess import ping_subprocess
+from ping_subprocess import ping_subprocess, ejecutar_traceroute
 from registro_log import registro_log
 
 
@@ -58,6 +58,8 @@ def analisis(ruta_archivos : str, archivo_ping : str, archivo_ip_publica : str, 
         ping_subprocess("resultados_red", host, cantidad)
         registro_log(f"Inicio del diagnóstico para {host}", "diagnostico.log")
         latencias = leer_ping(ruta_archivos, archivo_ping, host, cantidad)
+        print("\n--- Traceroute ---")
+        print(ejecutar_traceroute(host))
         promedio = calcular_promedio(latencias)
         ip = extraer_ip(ruta_archivos, archivo_ip_publica)
         generar_reporte(promedio, ip, len(latencias), archivo_salida, host)
@@ -66,6 +68,7 @@ def analisis(ruta_archivos : str, archivo_ping : str, archivo_ip_publica : str, 
         print("Reporte generado con éxito.")
     except Exception as e:
         print(f"Problemas al generar reporte - ERROR : {e}")
+
 
 
 print("Ejecutando diagnóstico desde rama dev")
