@@ -68,3 +68,4 @@ def analisis(ruta_archivos : str, archivo_ping : str, archivo_ip_publica : str, 
         print(f"Problemas al generar reporte - ERROR : {e}")
 
 
+print("Ejecutando diagnóstico desde rama dev")
