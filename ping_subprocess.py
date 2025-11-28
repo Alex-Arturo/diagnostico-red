@@ -50,6 +50,15 @@ def ejecutar_traceroute(host):
         return resultado.stdout
     except Exception as e:
         return f"Error ejecutando traceroute: {e}"
+    
+def ejecutar_nslookup(host):
+    try:
+        resultado : subprocess = subprocess.run(["nslookup", host], 
+                                    capture_output=True,
+                                    text=True)
+        return resultado.stdout        
+    except Exception as e:
+        return f"Error ejecutando nslookup: {e}"
 
 
 
